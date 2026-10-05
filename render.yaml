@@ -1,0 +1,30 @@
+# Render blueprint for the Wellows Initial Website Audit (Docker runtime, Chromium included in the image).
+# Deploy: Render dashboard -> New -> Blueprint -> pick this repository.
+services:
+  - type: web
+    name: wellows-initial-audit
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    # Chromium needs memory: 512 MB plans (free, starter) are likely to run out while rendering.
+    plan: standard
+    region: frankfurt
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    disk:
+      name: audit-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: AUDIT_API_TOKENS
+        sync: false          # set in the dashboard: <16+ char token>:<tenant_id>:<label>
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: AUDITOR_CONTACT_URL
+        sync: false          # public page describing the auditor; sent in its User-Agent
+      - key: DATA_DIR
+        value: /data
+      - key: CHROMIUM_NO_SANDBOX
+        value: "1"
+      - key: FIXTURE_MODE
+        value: "0"

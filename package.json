@@ -1,0 +1,53 @@
+{
+  "name": "wellows-initial-audit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Wellows Initial Website SEO and AI Content Readiness Audit module (standalone build)",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "tsx watch server/src/index.ts",
+    "dev:web": "vite --config web/vite.config.ts",
+    "build": "npm run build:server && npm run build:web",
+    "build:server": "esbuild server/src/index.ts --bundle --platform=node --format=esm --packages=external --target=node22 --outfile=dist/server/index.js --sourcemap",
+    "build:web": "vite build --config web/vite.config.ts",
+    "start": "node dist/server/index.js",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p web/tsconfig.json",
+    "test": "vitest run",
+    "fixtures": "tsx server/test/fixtures/serve.ts",
+    "demo": "tsx scripts/demo.ts",
+    "docs": "tsx scripts/gen-docs.ts",
+    "verify": "npm run build && tsx scripts/demo.ts",
+    "preview:build": "tsx scripts/build-artifact.ts artifact/index.html"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.1.2",
+    "@fastify/static": "^8.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "axe-core": "^4.13.0",
+    "better-sqlite3": "^12.11.1",
+    "cheerio": "^1.2.0",
+    "fastify": "^5.12.5",
+    "ipaddr.js": "^2.5.0",
+    "playwright": "^1.56.0",
+    "tldts": "^7.4.16",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "esbuild": "^0.25.12",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "selfsigned": "^2.4.1",
+    "tsx": "^4.23.15",
+    "typescript": "5.7",
+    "vite": "^6.4.3",
+    "vitest": "^3.2.7"
+  }
+}

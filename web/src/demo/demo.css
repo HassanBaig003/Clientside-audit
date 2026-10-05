@@ -1,0 +1,11 @@
+.topbar { top: env(safe-area-inset-top, 0px); gap: 14px; overflow-x: auto; white-space: nowrap; }
+.code-layout { display: grid; grid-template-columns: minmax(200px, 270px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.code-tree { max-height: 80vh; overflow-y: auto; margin-bottom: 0; }
+.code-view { min-width: 0; margin-bottom: 0; }
+.tree-item { display: block; width: 100%; text-align: left; border: 0; background: none; padding: 3px 8px; border-radius: 6px; font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--text-2); overflow-wrap: anywhere; }
+.tree-item:hover { background: #f3f4f6; }
+.tree-item.on { background: #e8effe; color: var(--primary-ink); font-weight: 600; }
+.code-pre { max-height: 76vh; overflow: auto; font-size: 12px; line-height: 1.55; tab-size: 2; white-space: pre; margin: 0; }
+ol.steps { list-style: none; padding: 0; margin: 0; max-width: 860px; }
+ol.steps pre.code { white-space: pre; overflow-x: auto; min-width: 0; }
+@media (max-width: 860px) { .code-layout { grid-template-columns: minmax(0, 1fr); } .code-tree { max-height: 240px; } }
